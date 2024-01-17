@@ -1,58 +1,39 @@
 #!/usr/bin/python3
-"""Unittest for max_integer([..])
-"""
+
 import unittest
-max_integer = __import__('6-max_integer').max_integer
+max_integer = __import__("6-max_integer").max_integer
+
+class MaxIntTestCase(unittest.TestCase):
+    def test_list_max_end(self):
+        res = max_integer([1, 2, 3, 4, 5])
+        self.assertEqual(res, 5)
 
 
-class TestMaxInteger(unittest.TestCase):
-    """
-    class for testing 6-max_integer_test.py
-    without arguments
-    """
-    def test_max_integer(self):
-        """list of positive integers"""
-        test_list = [32, 5, 6, 12, 1, 17, 99]
-        self.assertEqual(max_integer(test_list), 99)
+    def test_list_neg_ints(self):
+        res = max_integer([-6, -5, -4, -3])
+        self.assertEqual(res, -3)
 
 
-
-    def test_max_at_beginning(self):
-        """Positive ints with max at the [0]"""
-        test_list = [99, 1, 6, 2, 88, 33]
-        self.assertEqual(max_integer(test_list), 99)
+    def test_list_max_start(self):
+        res = max_integer([42, 22, 10, 7])
+        self.assertEqual(res, 42)
 
 
-    def test_max_in_middle(self):
-        test_list = [5, 99, 1]
-        self.assertEqual(max_integer(test_list), 99)
+    def test_list_max_mid(self):
+        res = max_integer([10, 15, 225, 15, 10])
+        self.assertEqual(res, 225)
 
 
-    def test_one_negative_number(self):
-        test_list = [1, 5, 99, -12, 55]
-        self.assertEqual_max_integer(test_list), 99)
+    def test_list_one_neg(self):
+        res = max_integer([1, 2, -3, 4, 5])
+        self.assertEqual(res, 5)
 
 
-    def test_only_negative_numbers(self):
-        test_list = [-99, -12, -55, -2, -9]
-        self.assertEqual(max_integer(test_list), -2)
+    def test_list_one_ele(self):
+        res = max_integer([5])
+        self.assertEqual(res, 5)
 
 
-    def test_only_one_element(self):
-        test_list = [99]
-        self.assertEqual(max_integer(test_list), 99)
-
-
-    def test_empty_list(self):
-        test_list = []
-        self.assertEqual(max_integer(test_list), None)
-
-    def max_integer(list=[]):
-        if len(list) == 0:
-            return None
-        result = list[0]
-        i = 1
-        while i < len(list):
-            if list[i] > result:
-                result = list[i]
-            i += 1       
+    def test_list_empty(self):
+        res = max_integer([])
+        self.assertIsNone(res)
