@@ -1,7 +1,4 @@
 #!/usr/bin/python3
-"""Defines a class called square, with variables"""
-
-#!/usr/bin/python3
 
 """This module defines a class named square with a size attribute"""
 
