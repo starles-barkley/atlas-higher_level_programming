@@ -1,1 +1,3 @@
-Series of tests for the add_integer script
+'Series of tests for 0-add_integer'
+
+>>>
