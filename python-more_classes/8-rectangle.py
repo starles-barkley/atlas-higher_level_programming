@@ -50,6 +50,20 @@ class Rectangle:
             raise ValueError("height must be >= 0")
         self.__height = value
 
+    @staticmethod
+    def bigger_or_equal(rect_1, rect_2):
+        """This static method returns the biggest Rectangle"""
+        if not isinstance(rect_1, Rectangle):
+            raise TypeError("rect_1 must be an instance of Rectangle")
+        if not isinstance(rect_2, Rectangle):
+            raise TypeError("rect_2 must be an instance of Rectangle")
+        area_1 = rect_1.area()
+        area_2 = rect_2.area()
+        if area_1 >= area_2:
+            return rect_1
+        if area_2 >= area_1:
+            return rect_2
+
     def area(self):
         """This public method returns the area of the Rectangle"""
         return self.__height * self.__width
@@ -63,7 +77,7 @@ class Rectangle:
     def __str__(self):
         """This method is the string representation of the Rectangle"""
         rectangle = ""
-        if (self.__height or self.__width) == 0:
+        if self.__height == 0 or self.__width == 0:
             return rectangle
         for i in range(self.__height):
             for i in range(self.__width):
