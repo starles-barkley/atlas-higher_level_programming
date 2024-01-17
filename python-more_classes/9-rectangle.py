@@ -64,6 +64,10 @@ class Rectangle:
         if area_2 >= area_1:
             return rect_2
 
+    @classmethod
+    def square(cls, size=0):
+        return cls(width=size, height=size)
+
     def area(self):
         """This public method returns the area of the Rectangle"""
         return self.__height * self.__width
@@ -94,4 +98,3 @@ class Rectangle:
         """This method prints a message when an instance is deleted"""
         Rectangle.number_of_instances -= 1
         print("Bye rectangle...")
-
