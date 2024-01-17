@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """This module defines a function that adds two integers"""
 
+
 def add_integer(a, b=98):
     """This function adds two integers together and returns the sum"""
     if not isinstance(a, (int, float)):
