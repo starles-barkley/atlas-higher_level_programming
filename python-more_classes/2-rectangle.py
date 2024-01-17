@@ -54,3 +54,16 @@ class Rectangle:
         if self.__height == 0 or self.__width == 0:
             return 0
         return 2 * (self.__height + self.__width)
+
+def __str__(self):
+        """This method is the string representation of the Rectangle"""
+        string = ""
+        if self.width > 0 and self.height > 0:
+            for row in range(self.height):
+                for col in range(self.width):
+                    string += '#'
+                if row < self.height - 1:
+                    string += '\n'
+            return string
+        else:
+            return string
