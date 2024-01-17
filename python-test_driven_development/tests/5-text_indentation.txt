@@ -1,1 +1,30 @@
 Test for 5-text_indentation
+
+>>> text_indentation = __import__("5-text_indentation").text_indentation
+
+>>> long = "this is a lengthy string. It includes a number of characters that break the line: a period and a colon so far, but where is the question mark? Oh, there it is"
+>>> text_indentation(long)
+this is a lengthy string.
+<BLANKLINE>
+It includes a number of characters that break the line:
+<BLANKLINE>
+a period and a colon so far, but where is the question mark?
+<BLANKLINE>
+Oh, there it is
+
+>>> text_indentation("Hello")
+Hello
+
+>>> text_indentation("Hello.")
+Hello.
+<BLANKLINE>
+
+>>> text_indentation(42)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+>>> text_indentation()
+Traceback (most recent call last):
+    ...
+TypeError: text_indentation() missing 1 required positional argument: 'text'
