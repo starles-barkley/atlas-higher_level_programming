@@ -68,3 +68,6 @@ class Rectangle:
         else:
             return string
 
+    def __repr__(self):
+        """This method returns the string representation of new object"""
+        return f"Rectangle({self.__width}, {self.__height})"
