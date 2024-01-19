@@ -1,3 +1,3 @@
 #!/usr/bin/python3
-new_list = a_list.copy()
-print(new_list)
+def copy_list(a_list):
+    new_list = a_list.copy()
