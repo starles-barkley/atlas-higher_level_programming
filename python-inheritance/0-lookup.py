@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+# This is a module that outlines an object and returns a list
 
 def lookup(obj):
-    return dir
+    #This is a function that takes an object and returns a list
+    return dir(obj)
