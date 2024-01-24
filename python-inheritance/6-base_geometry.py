@@ -3,5 +3,7 @@
 
 
 class BaseGeometry:
-    '''This class raises an exception'''
+    '''This class contains a function that raises an exception'''
     def area(self):
+        '''This function raises an exception'''
+        
