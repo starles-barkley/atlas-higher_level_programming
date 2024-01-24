@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/python3
 '''This module has a function that checks whether
 an object is an instance of a class or inherited'''
 
