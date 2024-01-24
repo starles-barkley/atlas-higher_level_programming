@@ -16,3 +16,8 @@ try:
     my_list = load_from_json_file(file_name)
 except Exception as e:
     pass
+
+for f in range(1, len(sys.argv)):
+    my_list.append(sys.argv[f])
+
+save_to_json_file(my_list, file_name)
