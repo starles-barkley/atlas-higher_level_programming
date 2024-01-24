@@ -9,3 +9,10 @@ import_module = __import__('6-load_from_json_file')
 load_from_json_file = import_module.load_from_json_file
 
 
+file_name = "add_item.json"
+my_list = []
+
+try:
+    my_list = load_from_json_file(file_name)
+except Exception as e:
+    pass
