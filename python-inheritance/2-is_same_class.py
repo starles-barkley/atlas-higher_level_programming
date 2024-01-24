@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-''' This module outlines a function that returns whether two classes are the same'''
+'''This module creates a function that checks whether classes are the same'''
 
 
 def is_same_class(obj, a_class):
