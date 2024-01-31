@@ -1,50 +1,54 @@
 #!/usr/bin/python3
-"""
-Unittest module for Base class.
-"""
+
 import unittest
 from models.base import Base
-from unittest.mock import patch
+from models.rectangle import Rectangle
+from models.square import Square
 from io import StringIO
+import sys
 
 
-class TestBase(unittest.TestCase):
-    """
-    class for testing Base class
-    """
-    def test_auto_id_assign(self):
-        """Auto assign ID exists"""
-        b1 = Base()
-        b2 = Base()
-        b3 = Base(99)
-        self.assertEqual(b1.id, 1)
-        self.assertEqual(b2.id, 2)
-        self.assertEqual(b3.id, 99)
+class TestBaseAttributes(unittest.TestCase):
+    def test_id_assignment(self):
+        self.assertEqual(Base._Base__nb_objects, 0)
+        test_obj = Base()
+        self.assertEqual(test_obj.id, 1)
 
-    def test_id_type(self):
-        """test the type of id to ensure an integer"""
-        base = Base(99)
-        self.assertIsInstance(base.id, int)
+    def test_custom_id(self):
+        id_obj = Base(89)
+        self.assertEqual(id_obj.id, 89)
 
-    def test_to_json_empty(self):
-        """test empty to json"""
-        with self.assertRaises(TypeError):
-            b1 = Base()
-            json_dictionary = Base.to_json_string()
+class TestJSONStringMethod(unittest.TestCase):
+    def test_empty(self):
+        self.assertEqual(Base.to_json_string(None), "[]")
 
-    @patch('sys.stdout', new_callable=StringIO)
-    def test_to_json_string_with_none(self, mock_stdout):
-        expected_output = "[]"
-        result = Base.to_json_string(None)
-        self.assertEqual(result, expected_output)
-        self.assertEqual(mock_stdout.getvalue(), "")
+    def test_non_dict(self):
+        self.assertEqual(Base.to_json_string([1, 2, 3]), "[1, 2, 3]")
 
-    @patch('sys.stdout', new_callable=StringIO)
-    def test_from_json_string_with_none(self, mock_stdout):
-        expected_output = []
-        result = Base.from_json_string(None)
-        self.assertEqual(result, expected_output)
-        self.assertEqual(mock_stdout.getvalue(), "")
+    def test_non_list(self):
+        self.assertEqual(Base.to_json_string(42), "42")
 
-if __name__ == '__main__':
-    unittest.main()
+    def test_success(self):
+        rect_1 = Rectangle(4, 5)
+        dict_1 = rect_1.to_dictionary()
+        expected = '[{"id": 2, "width": 4, "height": 5, "x": 0, "y": 0}]'
+        self.assertEqual(Base.to_json_string([dict_1]), expected)
+
+# class TestLoadFileMethod(unittest.TestCase):
+
+class TestFromJSONMethod(unittest.TestCase):
+    def test_none_param(self):
+        presumably_empty = Base.from_json_string(None)
+        self.assertEqual(presumably_empty, [])
+
+    def test_empty_param(self):
+        just_empty = Base.from_json_string("[]")
+        self.assertEqual(just_empty, [])
+
+    def test_base_dict(self):
+        base_dict = {'id': 42}
+        dict_list = [base_dict]
+        json_list = Base.to_json_string(dict_list)
+        self.assertEqual(Base.from_json_string(json_list), [{'id': 42}])
+
+# class TestCreateMethod(unittest.TestCase):
