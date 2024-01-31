@@ -1,9 +1,12 @@
 #!/usr/bin/python3
 
 import unittest
-from ...models.base import Base
-from ...models.square import Square
+from models.base import Base
+from models.square import Square
 from io import StringIO
+import sys
+from os.path import isfile
+from os import remove
 
 class TestSquareAttrs(unittest.TestCase):
     def test_just_size(self):
