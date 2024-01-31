@@ -25,3 +25,7 @@ class Square(Rectangle):
         else:
             self.width = value
             self.height = value
+
+    def __str__(self):
+        """Override __str__ to return a formatted string"""
+        return "[Square] ({}) {}/{} - {}".format(self.id, self.x, self.y, self.width)
