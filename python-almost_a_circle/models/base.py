@@ -46,7 +46,7 @@ class Base:
 
     @classmethod
     def create(cls, **dictionary):
-        """Return an instance with all attributes set using the update method"""
+        """Return a dict with all attributes set using the update method"""
         if cls.__name__ == "Rectangle":
             dummy_instance = cls(1, 1)
         elif cls.__name__ == "Square":
