@@ -21,8 +21,13 @@ class Rectangle(Base):
 
     @width.setter
     def width(self, value):
-        """Setter for width attribute"""
-        self.__width = value
+        """Setter for width attribute with validation"""
+        if not isinstance(value, int):
+            raise TypeError("width must be an integer")
+        elif value <= 0:
+            raise ValueError("width must be > 0")
+        else:
+            self.__width = value
 
     @property
     def height(self):
@@ -31,8 +36,13 @@ class Rectangle(Base):
 
     @height.setter
     def height(self, value):
-        """Setter for height attribute"""
-        self.__height = value
+        """Setter for height attribute with validation"""
+        if not isinstance(value, int):
+            raise TypeError("height must be an integer")
+        elif value <= 0:
+            raise ValueError("height must be > 0")
+        else:
+            self.__height = value
 
     @property
     def x(self):
@@ -41,8 +51,13 @@ class Rectangle(Base):
 
     @x.setter
     def x(self, value):
-        """Setter for x attribute"""
-        self.__x = value
+        """Setter for x attribute with validation"""
+        if not isinstance(value, int):
+            raise TypeError("x must be an integer")
+        elif value < 0:
+            raise ValueError("x must be >= 0")
+        else:
+            self.__x = value
 
     @property
     def y(self):
@@ -51,5 +66,10 @@ class Rectangle(Base):
 
     @y.setter
     def y(self, value):
-        """Setter for y attribute"""
-        self.__y = value
+        """Setter for y attribute with validation"""
+        if not isinstance(value, int):
+            raise TypeError("y must be an integer")
+        elif value < 0:
+            raise ValueError("y must be >= 0")
+        else:
+            self.__y = value
