@@ -54,3 +54,8 @@ class Base:
 
         dummy_instance.update(**dictionary)
         return dummy_instance
+
+    @classmethod
+    def load_from_file(cls):
+        """Return a list of instances loaded from a file"""
+        filename = cls.__name__ + ".json"
