@@ -89,3 +89,6 @@ class Rectangle(Base):
         '''Overide the str method to return a formatted str'''
         return "[Rectangle] ({}) {}/{} - {}/{}".format(
             self.id, self.x, self.y, self.width, self.height)
+
+    def update(self, *args):
+        """Update attributes with no-keyword arguments"""
