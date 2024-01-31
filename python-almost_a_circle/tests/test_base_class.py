@@ -1,7 +1,7 @@
 import unittest
 from models.base import Base
-from models.rectangle import Rectangle
-from models.square import Square
+from unittest.mock import patch
+from io import StringIO
 
 class TestClasses(unittest.TestCase):
 
