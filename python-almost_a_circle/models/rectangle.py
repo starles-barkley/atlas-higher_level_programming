@@ -84,4 +84,5 @@ class Rectangle(Base):
             print('#' * self.width)
     
     def __str__(self):
-      
+        '''Overide the str method to return a formatted str'''
+        return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x, self.y, self.width, self.height)
