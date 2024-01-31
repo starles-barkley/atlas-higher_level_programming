@@ -1,53 +1,50 @@
 #!/usr/bin/python3
-
+"""
+Unittest module for Base class.
+"""
 import unittest
 from models.base import Base
 from unittest.mock import patch
 from io import StringIO
 
-class TestClasses(unittest.TestCase):
 
-    def test_base_class(self):
+class TestBase(unittest.TestCase):
+    """
+    class for testing Base class
+    """
+    def test_auto_id_assign(self):
+        """Auto assign ID exists"""
         b1 = Base()
         b2 = Base()
+        b3 = Base(99)
         self.assertEqual(b1.id, 1)
         self.assertEqual(b2.id, 2)
+        self.assertEqual(b3.id, 99)
 
-    def test_rectangle_class(self):
-        r1 = Rectangle(5, 10)
-        r2 = Rectangle(3, 7, 1, 2)
-        self.assertEqual(r1.id, 1)
-        self.assertEqual(r2.id, 2)
+    def test_id_type(self):
+        """test the type of id to ensure an integer"""
+        base = Base(99)
+        self.assertIsInstance(base.id, int)
 
-    def test_square_class(self):
-        s1 = Square(4)
-        s2 = Square(2, 2, 2)
-        self.assertEqual(s1.id, 3)
-        self.assertEqual(s2.id, 4)
+    def test_to_json_empty(self):
+        """test empty to json"""
+        with self.assertRaises(TypeError):
+            b1 = Base()
+            json_dictionary = Base.to_json_string()
 
-    def test_save_and_load_from_file(self):
-        r3 = Rectangle(8, 16, 4, 8)
-        r4 = Rectangle(3, 5, 1, 4)
-        s3 = Square(6, 3, 3)
-        s4 = Square(2, 1, 1)
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_to_json_string_with_none(self, mock_stdout):
+        expected_output = "[]"
+        result = Base.to_json_string(None)
+        self.assertEqual(result, expected_output)
+        self.assertEqual(mock_stdout.getvalue(), "")
 
-        r_list = [r3, r4]
-        s_list = [s3, s4]
-
-        Rectangle.save_to_file(r_list)
-        Square.save_to_file(s_list)
-
-        loaded_r_list = Rectangle.load_from_file()
-        loaded_s_list = Square.load_from_file()
-
-        self.assertEqual(len(loaded_r_list), 2)
-        self.assertEqual(len(loaded_s_list), 2)
-
-        for r in loaded_r_list:
-            self.assertIsInstance(r, Rectangle)
-
-        for s in loaded_s_list:
-            self.assertIsInstance(s, Square)
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_from_json_string_with_none(self, mock_stdout):
+        expected_output = []
+        result = Base.from_json_string(None)
+        self.assertEqual(result, expected_output)
+        self.assertEqual(mock_stdout.getvalue(), "")
 
 if __name__ == '__main__':
     unittest.main()
