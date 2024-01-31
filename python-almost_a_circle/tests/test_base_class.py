@@ -1,57 +1,51 @@
-#!/usr/bin/python3
-
+import unittest
 from models.base import Base
 from models.rectangle import Rectangle
 from models.square import Square
 
-def main():
-    # Test Base class
-    b1 = Base()
-    print("Base instance b1 id:", b1.id)
+class TestClasses(unittest.TestCase):
 
-    b2 = Base()
-    print("Base instance b2 id:", b2.id)
+    def test_base_class(self):
+        b1 = Base()
+        b2 = Base()
+        self.assertEqual(b1.id, 1)
+        self.assertEqual(b2.id, 2)
 
-    # Test Rectangle class
-    r1 = Rectangle(5, 10)
-    print("\nRectangle instance r1 id:", r1.id)
-    print("Rectangle instance r1:", r1)
+    def test_rectangle_class(self):
+        r1 = Rectangle(5, 10)
+        r2 = Rectangle(3, 7, 1, 2)
+        self.assertEqual(r1.id, 1)
+        self.assertEqual(r2.id, 2)
 
-    r2 = Rectangle(3, 7, 1, 2)
-    print("\nRectangle instance r2 id:", r2.id)
-    print("Rectangle instance r2:", r2)
+    def test_square_class(self):
+        s1 = Square(4)
+        s2 = Square(2, 2, 2)
+        self.assertEqual(s1.id, 3)
+        self.assertEqual(s2.id, 4)
 
-    # Test Square class
-    s1 = Square(4)
-    print("\nSquare instance s1 id:", s1.id)
-    print("Square instance s1:", s1)
+    def test_save_and_load_from_file(self):
+        r3 = Rectangle(8, 16, 4, 8)
+        r4 = Rectangle(3, 5, 1, 4)
+        s3 = Square(6, 3, 3)
+        s4 = Square(2, 1, 1)
 
-    s2 = Square(2, 2, 2)
-    print("\nSquare instance s2 id:", s2.id)
-    print("Square instance s2:", s2)
+        r_list = [r3, r4]
+        s_list = [s3, s4]
 
-    # Test save_to_file and load_from_file methods
-    r3 = Rectangle(8, 16, 4, 8)
-    r4 = Rectangle(3, 5, 1, 4)
-    s3 = Square(6, 3, 3)
-    s4 = Square(2, 1, 1)
+        Rectangle.save_to_file(r_list)
+        Square.save_to_file(s_list)
 
-    r_list = [r3, r4]
-    s_list = [s3, s4]
+        loaded_r_list = Rectangle.load_from_file()
+        loaded_s_list = Square.load_from_file()
 
-    Rectangle.save_to_file(r_list)
-    Square.save_to_file(s_list)
+        self.assertEqual(len(loaded_r_list), 2)
+        self.assertEqual(len(loaded_s_list), 2)
 
-    loaded_r_list = Rectangle.load_from_file()
-    loaded_s_list = Square.load_from_file()
+        for r in loaded_r_list:
+            self.assertIsInstance(r, Rectangle)
 
-    print("\nLoaded Rectangle instances:")
-    for r in loaded_r_list:
-        print(r)
+        for s in loaded_s_list:
+            self.assertIsInstance(s, Square)
 
-    print("\nLoaded Square instances:")
-    for s in loaded_s_list:
-        print(s)
-
-if __name__ == "__main__":
-    main()
+if __name__ == '__main__':
+    unittest.main()
