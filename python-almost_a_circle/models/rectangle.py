@@ -92,3 +92,5 @@ class Rectangle(Base):
 
     def update(self, *args):
         """Update attributes with no-keyword arguments"""
+        attributes = ["id", "width", "height", "x", "y"]
+        for i in range(len(args)):
