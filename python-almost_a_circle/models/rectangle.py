@@ -94,4 +94,4 @@ class Rectangle(Base):
         """Update attributes with no-keyword arguments"""
         attributes = ["id", "width", "height", "x", "y"]
         for i in range(len(args)):
-        setattr(self, attributes[i], args[i])
+            setattr(self, attributes[i], args[i])
