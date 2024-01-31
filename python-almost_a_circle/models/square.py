@@ -18,13 +18,8 @@ class Square(Rectangle):
     @size.setter
     def size(self, value):
         """Setter for size attribute with validation"""
-        if not isinstance(value, int):
-            raise TypeError("size must be an integer")
-        elif value <= 0:
-            raise ValueError("size must be > 0")
-        else:
-            self.width = value
-            self.height = value
+        self.width = value
+        self.height = value
 
     def __str__(self):
         """Override __str__ to return a formatted string"""
