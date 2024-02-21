@@ -1,12 +1,7 @@
 #!/usr/bin/python3
 
-""" Script that lists all states in a database """
+""" Script that lists all states starting with N in a database """
 import MySQLdb
-import sys
-
-if __name__ == '__main__':
-
-    import MySQLdb
 import sys
 
 
@@ -21,3 +16,4 @@ if __name__ == '__main__':
     staterows = cur.execute("SELECT * FROM states ORDER BY states.id;")
     for row in cur._rows:
         print(row)
+        
