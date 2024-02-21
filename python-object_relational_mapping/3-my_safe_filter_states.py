@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-""" displays all values in the states table of hbtn_0e_0_usa where name matches the argument """
+""" displays all values in the states table but safe from injections  """
 
 import MySQLdb
 import sys
@@ -15,11 +15,12 @@ if __name__ == '__main__':
     db = MySQLdb.connect(host='localhost', user=user, passwd=pwd, db=database)
     cur = db.cursor()
 
-    staterows = cur.execute(
-        """SELECT *
+    query = """SELECT *
         FROM states
-        WHERE name=BINARY '{}'
-        ORDER BY states.id;""".format(state)
-        )
-    for row in cur._rows:
+        WHERE name = BINARY %s
+        ORDER BY states.id;"""
+
+    staterows = cur.execute(query, (state,))
+    rows = cur.fetchall()
+    for row in rows:
         print(row)
