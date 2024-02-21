@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-""" Script that lists all states starting with N in a database """
+""" Script that lists all states in a database """
 import MySQLdb
 import sys
 
