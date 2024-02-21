@@ -4,7 +4,8 @@
 import MySQLdb
 import sys
 
-
+if __name__ == '__main__':
+    
     user = sys.argv[1]
     pwd = sys.argv[2]
     database = sys.argv[3]
@@ -15,4 +16,3 @@ import sys
     for row in cur._rows:
         print(row)
         
-if __name__ == '__main__':
