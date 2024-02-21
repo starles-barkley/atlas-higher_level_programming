@@ -13,7 +13,7 @@ if __name__ == '__main__':
     db = MySQLdb.connect(host='localhost', user=user, passwd=pwd, db=database)
     cur = db.cursor()
 
-    staterows = cur.execute("SELECT * FROM states ORDER BY states.id;")
+    staterows = cur.execute(
+        )
     for row in cur._rows:
         print(row)
-        
