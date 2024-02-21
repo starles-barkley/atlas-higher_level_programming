@@ -14,6 +14,10 @@ if __name__ == '__main__':
     cur = db.cursor()
 
     staterows = cur.execute(
+        """SELECT *
+        FROM states
+        WHERE LEFT(name, 1)=BINARY 'N'
+        ORDER BY states.id;"""
         )
     for row in cur._rows:
         print(row)
