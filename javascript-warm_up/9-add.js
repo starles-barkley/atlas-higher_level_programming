@@ -7,3 +7,8 @@ function add(a, b) {
 const arg1 = process.argv[2];
 const arg2 = process.argv[3];
 
+if (isNaN(parseInt(arg1)) || isNaN(parseInt(arg2))) {
+  console.log('Invalid input. Please provide two integers.');
+} else {
+  console.log('The sum is:', add(arg1, arg2));
+}
