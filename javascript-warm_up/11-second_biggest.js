@@ -12,6 +12,9 @@ if (args.length === 0 || args.length === 1) {
         if (args[i] > max) {
             secondMax = max;
             max = args[i];
+        } else if (args[i] > secondMax && args[i] !== max) {
+            secondMax = args[i];
+        }
     }
 
     console.log(secondMax);
