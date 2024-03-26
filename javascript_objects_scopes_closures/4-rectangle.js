@@ -19,13 +19,15 @@ class Rectangle {
   }
 }
 
-rotate () {
+rotate () 
+{
   const temp = this.height;
   this.height = this.width;
   this.width = temp;
 }
 
-double () {
+double () 
+{
   this.height = this.height * 2;
   this.width = this.width * 2;
 }
