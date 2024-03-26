@@ -8,5 +8,11 @@ if (args.length === 0 || args.length === 1) {
     let max = -Infinity;
     let secondMax = -Infinity;
 
+    for (let i = 0; i < args.length; i++) {
+        if (args[i] > max) {
+            secondMax = max;
+            max = args[i];
+    }
+
     console.log(secondMax);
 }
