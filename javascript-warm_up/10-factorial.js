@@ -11,4 +11,4 @@ function computeFactorial(num) {
 }
 
 const input = process.argv[2];
-console.log('Factorial of', input, 'is:', computeFactorial(input));
+console.log(computeFactorial(input));
