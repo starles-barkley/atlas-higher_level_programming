@@ -1,3 +1,3 @@
 #!/usr/bin/node
 
-class rectangle()
+class rectangle{}
