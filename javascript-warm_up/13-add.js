@@ -1,5 +1,5 @@
 #!/usr/bin/node
 
-global.add = function add (a, b) {
-  return parseInt(a) + parseInt(b);
-};
+const add = (a, b) => a + b;
+
+console.log(add(3, 5));
