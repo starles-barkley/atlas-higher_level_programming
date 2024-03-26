@@ -1,12 +1,12 @@
 #!/usr/bin/node
 
-function computeFactorial(num) {
+function computeFactorial (num) {
   if (isNaN(parseInt(num))) {
-      return 1;
+    return 1;
   } else if (parseInt(num) <= 1) {
-      return 1;
+    return 1;
   } else {
-      return parseInt(num) * computeFactorial(parseInt(num) - 1);
+    return parseInt(num) * computeFactorial(parseInt(num) - 1);
   }
 }
 
