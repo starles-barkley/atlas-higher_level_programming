@@ -1,10 +1,8 @@
 #!/usr/bin/node
+const request = require('request');
+const url = process.argv[2];
 
-const fs = require('fs');
-const { argv } = require('node:process');
-
-fs.writeFile(argv[2], argv[3], err => {
-  if (err) {
-    throw err;
-  }
+request(url, function (err, response, body) {
+  if (err) throw err;
+  console.log('code:', response.statusCode);
 });
