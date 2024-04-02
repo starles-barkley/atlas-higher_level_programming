@@ -1,32 +1,22 @@
 #!/usr/bin/node
 
+const { argv } = require('node:process');
 const request = require('request');
+let count = 0;
 
-if (process.argv.length < 3) {
-  console.log('Usage: node count_movies.js <API_URL>');
-  process.exit(1);
-}
-
-const characterId = 18;
-
-const apiUrl = process.argv[2];
-
-request(apiUrl, (error, response, body) => {
-  if (error) {
-    console.error(error);
-    process.exit(1);
+request(argv[2], (err, res, body) => {
+  if (err) {
+    console.error(err);
+  } else {
+    const data = JSON.parse(body);
+    for (const film of data.results) {
+      for (const character of film.characters) {
+        const tokens = character.split('/');
+        if (tokens[5] === '18') {
+          count++;
+        }
+      }
+    }
+    console.log(count);
   }
-
-  if (response.statusCode !== 200) {
-    console.error(`Failed to fetch data. Status code: ${response.statusCode}`);
-    process.exit(1);
-  }
-
-  const data = JSON.parse(body);
-
-  const moviesWithWedge = data.results.filter(movie => {
-    return movie.characters.includes(`https://swapi-api.hbtn.io/api/people/${characterId}/`);
-  });
-
-  console.log(`Number of movies with Wedge Antilles: ${moviesWithWedge.length}`);
 });
